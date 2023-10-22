@@ -1,7 +1,7 @@
 class exit:
-    def __init__(self,arguments:list,switchs:list) -> None:
+    def __init__(self, arguments: list, switches: list) -> None:
         self.arguments = arguments
-        self.switchs = switchs
+        self.switches = switches
 
     def run(self) -> str:
         quit()

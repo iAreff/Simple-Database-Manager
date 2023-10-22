@@ -1,5 +1,5 @@
 class dm:
-    def __init__(self,arguments:list,switchs:list):
+    def __init__(self, arguments: list, switches: list):
         pass
 
     def run(self):

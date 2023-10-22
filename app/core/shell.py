@@ -1,4 +1,6 @@
 from app.handlers.command_handler import CommandHandler
+
+
 class Shell:
     def __init__(self) -> None:
         self.handler = CommandHandler()
@@ -8,6 +10,6 @@ class Shell:
         while True:
             command = str(input(" > "))
             output = self.handler.call(command)
-            if output != "" :print(output, end='')
+            if output != "":
+                print(output, end='')
             continue
-            
