@@ -1,6 +1,6 @@
 class dm:
-    def __init__(self, arguments: list, switches: list):
+    def __init__(self, arguments: list, switches: list) -> None:
         pass
 
-    def run(self):
+    def run(self) -> None:
         return '.. Database Manager ..\n'
