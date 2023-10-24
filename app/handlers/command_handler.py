@@ -10,8 +10,9 @@ files = os.listdir(commands_path)
 commands_file = [f for f in files if os.path.isfile(commands_path+'/'+f)]
 
 for i in commands_file:
-    exec(f"from app.models.commands.{i[:-3]} import {i[:-3]}")
-
+	if re.search(r".py$",i):
+		exec(f"from app.models.commands.{i[:-3]} import {i[:-3]}")
+	
 
 class CommandHandler:
     def __init__(self) -> None:
