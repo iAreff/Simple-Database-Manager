@@ -1,19 +1,20 @@
 from consolemenu import *
 from consolemenu.items import *
+from app.handlers.database_handler import database_handler
+
 
 class dbconfig:
 	def __init__(self, arguments: list, switches: list) -> None:
 		self.arguments = arguments
 		self.switches = switches
 
-#===========================================
 	def run(self) -> str:
 		if len(self.arguments) < 2:
 			self.menu()
 			return ""
 		return ""
 
-# menu function
+	
 	def menu(self) -> None :
 		main_menu = ConsoleMenu("Database config", "Supported databases (mysql,sqlite)")
 
@@ -30,13 +31,12 @@ class dbconfig:
 
 		main_menu.show()
 
-# add/manage databse function
 	def add_sqlite(self):
 		print("""
-	Now you can add a new sqlite database
-	======================================
-	HELP :: you can use 'dbconfig sqlite -n "NAME" -p "SQLITE PATH"'
-	for adding new database.
+Now you can add a new sqlite database
+======================================
+HELP :: you can use 'dbconfig sqlite -n "NAME" -p "SQLITE PATH"'
+for adding new database.
 				""")
 		name= input("Database name : ")
 		path = input("Database file path (full path) : ")
@@ -44,14 +44,18 @@ class dbconfig:
 			input("(ENTER) return to main menu")
 			return
 
+		db = database_handler("Databases_data.sqlite")
+		db.create_table("sqlite","Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT , Path TEXT")
+		db.insert_data("sqlite",(name,path),("Name","Path"))
+		db.close_connection()
 
 	def add_mysql(self):
 		print("""
-	Now you can add a new mysql database
-	======================================
-	HELP :: you can use 
-	'dbconfig mysql -n "NAME" -u "USER" -p "PASSWORD" -h "HOST" -db "DATABASE NAME"'
-	for adding new database.
+Now you can add a new mysql database
+======================================
+HELP :: you can use 
+'dbconfig mysql -n "NAME" -u "USER" -p "PASSWORD" -h "HOST" -db "DATABASE NAME"'
+for adding new database.
 				""")
 		host = input("Database host : ")
 		user = input("Database user : ")
